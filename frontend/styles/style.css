@@ -141,16 +141,59 @@ body {
 }
 
 /* Tips and Timer */
-.tips-logo {
-
-}
 .tips {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
+    margin: 0;
     padding: 10px 30px 40px;
     list-style-type: none;
+}
+
+.tip {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 44px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.fifty-tip::before {
+    position: absolute;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    content: '50:50';
+}
+
+.chat-tip::before {
+    position: absolute;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    content: '50:50';
+}
+
+.fast-google-tip::before {
+    position: absolute;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    content: '50:50';
 }
 
 .flip-card-wrapper {
@@ -221,9 +264,63 @@ body {
 
 /* Steps */
 .progress-steps {
-    border: var(--window-border);
-    border-radius: var(--window-border-radius);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+    width: 252px;
+    margin: 0;
+    padding: 0;
     list-style-type: none;
+}
+
+.progress-step {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.step-number {
+    display: block;
+    width: 30px;
+    text-align: right;
+    font-size: 24px;
+    font-weight: 400;
+    margin-right: 28px;
+    color: var(--border-color);
+}
+
+.step-active {
+    position: relative;
+}
+
+.step-active > .step-number {
+    color: var(--text-color);
+}
+
+.step-active > .progress-points {
+    color: var(--main-bg-color);
+}
+
+.step-active::before {
+    position: absolute;
+    top: -2px;
+    left: -20px;
+    z-index: -1;
+    width: 216px;
+    height: 32px;
+    background-image: url('../progress_mark.svg');
+    content: '';
+}
+
+.progress-points {
+    display: block;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--accent-color);
+}
+
+.progress-step:nth-child(5n) > .progress-points {
+    color: var(--text-color);
 }
 
 /* Q & A SECTION */
