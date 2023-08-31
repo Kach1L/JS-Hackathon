@@ -1,42 +1,74 @@
 :root {
-    --main-bg-color: rgb(58, 64, 78);
+    /* Main background colors */
+    --main-bg-color: rgb(30, 38, 51);
+    --border-color: rgb(58, 64, 78);
+    /* Text colors */
     --text-color: rgb(178, 186, 205);
     --active-text-color: rgb(52, 105, 195);
     --accent-color: rgb(228, 144, 63);
-    --border-color: rgb(58, 64, 78);
-    --big-shadow: 0 0 50px rgb(26,32,44);
-    --medium-shadow: 0 0 25px rgb(26,32,44);
-    --main-windows-color: rgb(56, 67, 88);
+    /* Shadow styles colors */
+    /* Windows */
+    --main-windows-color: rgb(35, 42, 58);
     --window-border-radius: 10px;
     --window-border-color: rgb(58, 64, 78);
-    --window-border: 1px solid var(--window-border-color);
+    --window-border: 2px solid var(--window-border-color);
     --window-inner-border-color: rgb(47, 57, 76);
     --window-inner-border: 2px solid var(--window-inner-border-color);
+    --window-shadow-small: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 body {
-    background-color: var(--main-bg-color);
+    margin: 0;
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
     color: var(--text-color);
+    background-color: var(--main-bg-color);
+    max-width: 1440px;
 }
 
 /* HEADER SECTION */
 .page-header {
-    width: 95%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: center;
+    width: 95%;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 15px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 4px solid var(--border-color);
 }
 
-.logo {
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.menu-item .menu-link {
+    padding-block: 30px;
+    padding-inline: 40px;
+}
+
+.menu-item:first-child .menu-link {
+    padding-left: 0;
+}
+
+.menu-item:last-child .menu-link {
+    padding-right: 0;
+}
+
+.menu-link {
     display: block;
-    font-family: 'Tillana', cursive;
-    font-size: 1.5rem;
-    color: var(--text-color);
+    font: inherit;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: inherit;
     text-decoration: none;
 }
 
@@ -44,14 +76,17 @@ body {
 .page-content {
     display: grid;
     gap: 40px;
-    PADDING-TOP: 40px;
+    max-width: 1040px;
+    padding-top: 40px;
+    padding-inline: 20px;
 }
 
 /* GAME BOARD SECTION */
 .game-board {
     display: grid;
     grid-template-columns: 1fr 2.5fr 1fr;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 55px;
     width: 95%;
     min-height: 400px;
     margin: 0 auto;
@@ -59,23 +94,27 @@ body {
 
 /* Scoreboard */
 .users {
+    min-width: 252px;
     border: var(--window-border);
     border-radius: var(--window-border-radius);
+    background-color: var(--main-windows-color);
+    box-shadow: var(--window-shadow-small);
 }
 
 .users-header {
-    padding: 20px;
-    border-bottom: 1px solid var(--border-color);
+    margin: 0;
+    padding: 22px 26px;
+    border-bottom: var(--window-inner-border);
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 24px;
 }
 
 .user-list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 25px;
     max-height: 400px;
-    padding: 20px;
+    margin: 0;
+    padding: 18px 0 0;
     overflow-y: scroll;
     list-style-type: none;
 }
@@ -85,6 +124,7 @@ body {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    padding: 11px 20px;
 }
 
 .user-pic {
@@ -123,7 +163,6 @@ body {
     background-color: transparent;
     width: 300px;
     height: 300px;
-    border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -153,15 +192,31 @@ body {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-    background-color: #bbb;
+    background-color: transparent;
     color: black;
 }
 
 /* Style the back side */
 .flip-card-back {
-    background-color: dodgerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-windows-color);
     color: white;
+    border-radius: 50%;
+    border: 6px solid #E4903F;
     transform: rotateY(180deg);
+    fill: #232A3A;
+    stroke-width: 6px;
+    stroke: #384358;
+}
+
+.flip-card-back-number {
+    color: #9DA6B7;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
 }
 
 /* Steps */
