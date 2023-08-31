@@ -1,0 +1,14 @@
+django-admin startproject myproject
+
+python manage.py startapp myapp
+
+pip install djangorestframework
+
+pip install Django
+
+pip3 install django-cors-headers
+
+python manage.py makemigrations myapp
+python manage.py migrate
+
+
