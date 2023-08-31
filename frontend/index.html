@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/burger-menu.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tillana:wght@500&display=swap" rel="stylesheet">
+    <title>Who wants to be a programmer-millionaire?</title>
+</head>
+<body>
+    <header class="page-header">
+        <a class="logo" href="#">Who wants to be a millionaire-programmer?</a>
+        <ul class="menu">
+            <li><a class="menuItem" href="#">Play</a></li>
+            <li><a class="menuItem" href="#">About game</a></li>
+            <li><a class="menuItem" href="#">Rules</a></li>
+        </ul>
+        <button class="hamburger">
+            <i class="menuIcon material-icons">menu</i>
+            <i class="closeIcon material-icons" style="display: none">close</i>
+        </button>
+    </header>
+    <main>
+        <section class="game-board">
+           <div class="users">
+               <h2>Scoreboard</h2>
+               <ul class="user-list">
+                   <li class="user">
+                       <img src="" alt="User pic.">
+                       <span class="user-name"></span>
+                   </li>
+               </ul>
+           </div>
+            <div class="tips-logo">
+                <ul class="tips">
+                    <li class="tip chatgpt-tip">GPT it!</li>
+                    <li class="tip fast-google-tip">Google it!</li>
+                    <li class="tip x2-tip">x2</li>
+                </ul>
+                <div class="game-logo-wrapper">
+                    <img class="game-logo" src="#" alt="Game logo.">
+                </div>
+            </div>
+            <div class="progress-bar">
+                <ul class="progress-steps">
+                    <li class="progress-step">
+                        <span class="number">1</span>
+                        <span class="progress-points">5000</span>
+                    </li>
+                    <li class="progress-step">
+                        <span class="number">2</span>
+                        <span class="progress-points">4000</span>
+                    </li>
+                    <li class="progress-step">
+                        <span class="number">3</span>
+                        <span class="progress-points">3000</span>
+                    </li>
+                    <li class="progress-step">
+                        <span class="number">4</span>
+                        <span class="progress-points">2000</span>
+                    </li>
+                    <li class="progress-step">
+                        <span class="number">5</span>
+                        <span class="progress-points">1000</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="questions-answers">
+
+        </section>
+    </main>
+    <script src="js/burger-menu.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

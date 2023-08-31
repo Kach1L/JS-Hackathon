@@ -1,0 +1,30 @@
+:root {
+    --main-bg-color: rgb(30,38,51);
+    --main-windows-color: rgb(29,37,50);
+    --text-color: rgb(235,239,250);
+    --border-color: rgb(40,47,65);
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
+.page-header {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 auto;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: block;
+    font-family: 'Tillana', cursive;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
