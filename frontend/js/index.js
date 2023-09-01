@@ -1,4 +1,3 @@
-// MAIN LOGIC
 async function startNewGame() {
   // Creating user or choosing an existing one
   const playerName = await createPlayer();
@@ -15,20 +14,35 @@ async function startNewGame() {
 
   // If user passed all questions show success message  and update user score
 }
-// GAME LOGIC
+
+// ROUND LOGIC
 // Start round
-function startNewRound(number) {
-  const roundTopics = {
-    1: ['html', 'easy'],
-    2: ['html', 'medium'],
-    3: ['html', 'hard'],
-    4: ['css', 'easy'],
-    5: ['css', 'medium'],
-    6: ['css', 'hard'],
-    7: ['js', 'easy'],
-    8: ['js', 'medium'],
-    9: ['js', 'hard'],
-  }
+async function playNewRound(number) {
+  const roundTopic = getRoundTopic(number);
+  const roundDifficulty = getRoundDifficulty(number);
+
+  const roundData = await fetchQuestionAndAnswers();
+  const question = roundData.question;
+  const answer1 = roundData.answer;
+  const answer2 = roundData.answer;
+  const answer3 = roundData.answer;
+  const answer4 = roundData.answer;
+  const rightAnswer = roundData.answer;
+
+  const questionParagraph = document.querySelector('.question')
+  const firstAnswerButton = document.querySelector('.first-answer')
+  const secondAnswerButton = document.querySelector('.first-answer')
+  const thirdAnswerButton = document.querySelector('.first-answer')
+  const fourthAnswerButton = document.querySelector('.first-answer')
+
+  startTimer();
+  setTimeout(() => {
+    alert('Time is out!');
+    return false;
+  }, 60000)
+  displayQuestion();
+  displayAnswers();
+
 
 }
 
@@ -77,6 +91,9 @@ function displayAnswers(answers) {
   fourthAnswerButton.textContent = answers[3];
 }
 
+function checkAnswer() {
+
+}
 // MODAL WINDOW CONTROL
 // Toggle modal window
 function toggleModalWindow(status = 'open') {
