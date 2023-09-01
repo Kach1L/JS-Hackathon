@@ -178,7 +178,7 @@ body {
     font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
-    background-image: url('../ellipse.svg');
+    background-image: url('../images/ellipse.svg');
     background-repeat: no-repeat;
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -186,7 +186,7 @@ body {
 }
 
 .tip:hover {
-    background-image: url('../ellipse_active.svg');
+    background-image: url('../images/ellipse_active.svg');
 }
 
 .flip-card-wrapper {
@@ -288,7 +288,7 @@ body {
 }
 
 .step-active {
-    background-image: url('../progress_mark.svg');
+    background-image: url('../images/progress_mark.svg');
     background-repeat: no-repeat;
 }
 
@@ -320,7 +320,7 @@ body {
     padding: 0 0 0 155px;
     margin: 0 auto 20px;
     font-size: 20px;
-    background-image: url('../button_question.svg');
+    background-image: url('../images/button_question.svg');
     background-repeat: no-repeat;
     filter: drop-shadow(0px 14px 34px #0D1A30);
 }
@@ -353,32 +353,32 @@ body {
 
 .answer-button {
     padding: 0 0 0 155px;
-    background-image: url('../button_answer_basic.svg');
+    background-image: url('../images/button_answer_basic.svg');
 }
 
 .answer-button-active {
     color: var(--main-bg-color);
-    background-image: url('../button_answer_active_reversed.svg');
+    background-image: url('../images/button_answer_active_reversed.svg');
 }
 
 .answer-button-right {
     color: var(--main-bg-color);
-    background-image: url('../button_answer_right_reversed.svg');
+    background-image: url('../images/button_answer_right_reversed.svg');
 }
 
 .answer-button-reversed {
     padding: 0 0 0 65px;
-    background-image: url('../button_answer_basic_reversed.svg');
+    background-image: url('../images/button_answer_basic_reversed.svg');
 }
 
 .answer-button-reversed-active {
     color: var(--main-bg-color);
-    background-image: url('../button_answer_active.svg');
+    background-image: url('../images/button_answer_active.svg');
 }
 
 .answer-button-reversed-right {
     color: var(--main-bg-color);
-    background-image: url('../button_answer_right.svg');
+    background-image: url('../images/button_answer_right.svg');
 }
 
 /* Modal window */
@@ -422,7 +422,6 @@ body {
 }
 
 .start-game-button {
-    box-sizing: border-box;
     display: block;
     width: 100%;
     padding: 15px 19px;
