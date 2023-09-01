@@ -339,21 +339,44 @@ body {
     filter: drop-shadow(0px 14px 34px #0D1A30);
 }
 
-.answer-button {
+.answer-button, .answer-button-reversed {
     width: 521px;
     height: 56px;
-    padding: 0 0 0 155px;
     background-color: transparent;
     border: none;
     text-align: left;
     font: inherit;
     color: inherit;
-    background-image: url('../button_answer_basic.svg');
+    cursor: pointer;
     background-repeat: no-repeat;
-    background-position: center left;
+}
+
+.answer-button {
+    padding: 0 0 0 155px;
+    background-image: url('../button_answer_basic.svg');
+}
+
+.answer-button-active {
+    color: var(--main-bg-color);
+    background-image: url('../button_answer_active_reversed.svg');
+}
+
+.answer-button-right {
+    color: var(--main-bg-color);
+    background-image: url('../button_answer_right_reversed.svg');
 }
 
 .answer-button-reversed {
     padding: 0 0 0 65px;
     background-image: url('../button_answer_basic_reversed.svg');
+}
+
+.answer-button-reversed-active {
+    color: var(--main-bg-color);
+    background-image: url('../button_answer_active.svg');
+}
+
+.answer-button-reversed-right {
+    color: var(--main-bg-color);
+    background-image: url('../button_answer_right.svg');
 }
