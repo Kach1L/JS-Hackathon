@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
-from .models import Option, Extra
-from .serializers import OptionSerializer, ExtraSerializer
+from .models import Option, Player
+from .serializers import OptionSerializer, PlayerSerializer
 from rest_framework import generics
 # from .utils import bulk_insert_countries
 
@@ -24,7 +24,7 @@ class OptionDetail(generics.RetrieveUpdateDestroyAPIView):
 #Read - GET
 #Update - PUT
 #Delete - DELETE
-def Option_all(request):
+def option_all(request):
     if request.method == 'GET':
         queryset = Option.objects.all()
         serializer = OptionSerializer(queryset, many=True)
@@ -32,7 +32,7 @@ def Option_all(request):
         return JsonResponse(serialized_data, safe=False)
     
 @csrf_exempt
-def Option_create(request):
+def option_create(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         serializer = OptionSerializer(data=data)
@@ -43,7 +43,7 @@ def Option_create(request):
             return JsonResponse(serializer.errors, status=400)
         
 @csrf_exempt     
-def Option_update(request, pk):
+def option_update(request, pk):
     option = Option.objects.filter(pk=pk).first()
     if not option:
         return JsonResponse({'error': 'Option matching query does not exist.'}, status=400)
@@ -57,33 +57,82 @@ def Option_update(request, pk):
             return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt
-def Option_delete(request, pk):
+def option_delete(request, pk):
     option = Option.objects.filter(pk=pk).first()
     if not option:
         return JsonResponse({'error': 'Option matching query does not exist.'}, status=400)
     if request.method == 'DELETE':
-        Option.delete()
+        option.delete()
         return JsonResponse({'message': 'Option deleted successfully.'}, status=201)
     else:
         return JsonResponse({'error': 'Invalid request'}, status=400)
-    
 
-# def shop(request):
-#     return render(request, 'Optionsapp/index.html')
+# def extras(request):
+#     if request.method == 'GET':
+#         queryset = Extra.objects.all()
+#         serializer = ExtraSerializer(queryset, many=True)
+#         serialized_data = serializer.data
+#         return JsonResponse(serialized_data, safe=False)
 
-# def bulk_insert(request):
-#     country_names = [
-#         {"name": "Afghanistan", "png": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png"},
-#         {"name": "Albania", "png": "https://flagcdn.com/w320/al.png"},
-#         {"name": "Algeria", "png": "https://flagcdn.com/w320/dz.png"},
-#         {"name": "American Samoa", "png": "https://flagcdn.com/w320/as.png"}
-#     ]
-#     bulk_insert_countries(country_names)
-#     return JsonResponse({"message": "Done!."}, status=201)
+class PlayerList(generics.ListCreateAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
 
-def extras(request):
+class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+
+#CRUD
+#Create - POST
+#Read - GET
+#Update - PUT
+#Delete - DELETE
+def player_all(request):
     if request.method == 'GET':
-        queryset = Extra.objects.all()
-        serializer = ExtraSerializer(queryset, many=True)
+        queryset = Player.objects.all()
+        serializer = PlayerSerializer(queryset, many=True)
         serialized_data = serializer.data
         return JsonResponse(serialized_data, safe=False)
+    
+@csrf_exempt
+def player_create(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        serializer = PlayerSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({'message': 'Player created successfully.'}, status=201)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+        
+@csrf_exempt     
+def player_update(request, pk):
+    player = Player.objects.filter(pk=pk).first()
+    if not Player:
+        return JsonResponse({'error': 'Player matching query does not exist.'}, status=400)
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        serializer = PlayerSerializer(player, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({'message': 'Player updated successfully.'}, status=200)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def player_delete(request, pk):
+    player = Player.objects.filter(pk=pk).first()
+    if not player:
+        return JsonResponse({'error': 'Player matching query does not exist.'}, status=400)
+    if request.method == 'DELETE':
+        player.delete()
+        return JsonResponse({'message': 'Player deleted successfully.'}, status=201)
+    else:
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+
+# def extras(request):
+#     if request.method == 'GET':
+#         queryset = Extra.objects.all()
+#         serializer = ExtraSerializer(queryset, many=True)
+#         serialized_data = serializer.data
+#         return JsonResponse(serialized_data, safe=False)
