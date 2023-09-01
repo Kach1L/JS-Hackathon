@@ -1,6 +1,40 @@
-// MAIN LOGIC
-// Get a player name
+// EVENT LISTENERS
+const playerNameForm = document.querySelector('.modal-window-start-game');
+const modalWindow = document.querySelector('.modal-wrapper');
 
+
+// MAIN LOGIC
+async function startNewGame() {
+  toggleModalWindow();
+  const submittedName = await new Promise((resolve) => {
+    playerNameForm.addEventListener('submit', function (event) {
+      const playerNameValue = getNewPlayerName(event);
+      resolve(playerNameValue);
+    });
+  });
+  console.log(submittedName);
+  toggleModalWindow('close');
+}
+
+// SERVICE FUNCTIONS
+// Toggle modal window
+function toggleModalWindow(status = 'open') {
+  if(status === 'open') {
+    modalWindow.style.display = 'flex';
+  } else {
+    modalWindow.style.display = 'none';
+  }
+}
+
+// Get a player name
+function getNewPlayerName(event){
+  event.preventDefault();
+  const playerNameFormData = new FormData(playerNameForm);
+  return playerNameFormData.get('player-name');
+}
+
+// Check if player name exist in the database
+startNewGame();
 // Fetch player's data or create a new one: (check if it already exists, then ask for a new one)
 
 // Alert a message with a rules
@@ -13,7 +47,7 @@
 
 
 
-// API functions
+// API FUNCTIONS
 async function fetchData(requestString) {
   return await fetch(requestString)
     .then((data) => data)
