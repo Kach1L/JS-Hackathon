@@ -268,7 +268,7 @@ body {
 .progress-steps {
     display: flex;
     flex-direction: column-reverse;
-    gap: 9px;
+    gap: 1px;
     width: 252px;
     margin: 0;
     padding: 0;
@@ -278,7 +278,10 @@ body {
 .progress-step {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    align-items: center;
+    width: 216px;
+    height: 32px;
+    padding-left: 25px;
 }
 
 .step-number {
@@ -292,7 +295,8 @@ body {
 }
 
 .step-active {
-    position: relative;
+    background-image: url('../progress_mark.svg');
+    background-repeat: no-repeat;
 }
 
 .step-active > .step-number {
@@ -301,17 +305,6 @@ body {
 
 .step-active > .progress-points {
     color: var(--main-bg-color);
-}
-
-.step-active::before {
-    position: absolute;
-    top: -2px;
-    left: -20px;
-    z-index: -1;
-    width: 216px;
-    height: 32px;
-    background-image: url('../progress_mark.svg');
-    content: '';
 }
 
 .progress-points {
