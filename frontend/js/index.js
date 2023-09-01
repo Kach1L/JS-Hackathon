@@ -1,7 +1,7 @@
-
 // MAIN LOGIC
 async function startNewGame() {
-  const playerName = await setNewPlayerName();
+  // Creating user or choosing an existing one
+  const playerName = await createPlayer();
 
 }
 
@@ -18,36 +18,34 @@ function toggleModalWindow(status = 'open') {
 }
 
 // PLAYER FUNCTIONS
-// Get valid player name
-async function setNewPlayerName() {
-  const playerNameForm = document.querySelector('.modal-window-start-game');
-  let isUserNameValid = false;
-  let submittedName;
-
+// Create new player or use existing
+async function createPlayer() {
   toggleModalWindow('open');
-  while (!isUserNameValid) {
-    // Get name from form
-    submittedName = await new Promise((resolve) => {
-      playerNameForm.addEventListener('submit', function (event) {
-        const playerNameValue = getNewPlayerNameFromForm(event);
-        resolve(playerNameValue);
-      })
-    })
-    // if (!isPlayerExist(submittedName)) {
-    if (submittedName === 'Slava') {
-      isUserNameValid = true;
-    }
+  const submittedName = await getNewPlayerNameFromForm();
+  // if (!isPlayerExist(submittedName)) {
+  //   await setNewPlayer(submittedName);
+  // }
+  if (submittedName === 'Kachi' || submittedName === 'Slava') {
+    console.log('Hi again, Developer!!!!')
   }
   toggleModalWindow('close');
   return submittedName;
 }
 
 // Get a player name from form
-function getNewPlayerNameFromForm(event){
+async function getNewPlayerNameFromForm(){
   const playerNameForm = document.querySelector('.modal-window-start-game');
-  event.preventDefault();
-  const playerNameFormData = new FormData(playerNameForm);
-  return playerNameFormData.get('player-name');
+
+  const submittedName = await new Promise((resolve) => {
+    playerNameForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const playerNameFormData = new FormData(playerNameForm);
+      const playerNameValue = playerNameFormData.get('player-name');
+      resolve(playerNameValue);
+    })
+  })
+
+  return submittedName;
 }
 
 // Check if player name exist in the database
