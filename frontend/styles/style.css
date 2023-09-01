@@ -296,7 +296,7 @@ body {
 }
 
 .step-active > .step-number {
-    color: var(--text-color);
+    color: white;
 }
 
 .step-active > .progress-points {
@@ -322,30 +322,23 @@ body {
 }
 
 .progress-step:nth-child(5n) > .progress-points {
-    color: var(--text-color);
+    color: white;
 }
 
 /* Q & A SECTION */
 /*!*!*rgb(231,136,47) Medium color, rgb(246,150,61) UpSide color, rgb(217,123,35) Downside color */
 .question {
     position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
-    min-height: 85px;
+    min-height: 86px;
+    padding: 0 0 0 155px;
     margin: 0 auto 20px;
-    text-align: center;
-    filter: drop-shadow(0px 14px 34px #0D1A30);
-}
-
-
-.question::before {
-    position: absolute;
-    top: 0;
-    right: -12px;
-    width: 100%;
-    height: 100%;
+    font-size: 20px;
     background-image: url('../button_question.svg');
     background-repeat: no-repeat;
-    content: '';
+    filter: drop-shadow(0px 14px 34px #0D1A30);
 }
 
 .answers {
@@ -366,27 +359,21 @@ body {
 }
 
 .answer-button {
-    width: 535px;
+    width: 521px;
     height: 56px;
-    padding: 0;
+    padding: 0 0 0 155px;
     position: relative;
     background-color: transparent;
     border: none;
+    text-align: left;
     font: inherit;
     color: inherit;
-}
-
-.answer-button::before {
-    position: absolute;
-    top: 0;
-    right: -12px;
-    width: 100%;
-    height: 100%;
     background-image: url('../button_answer_basic.svg');
-    content: '';
+    background-repeat: no-repeat;
+    background-position: center left;
 }
 
-.answer-button-reversed::before {
-    rotate: 180deg;
-    left: -12px;
+.answer-button-reversed {
+    padding: 0 0 0 65px;
+    background-image: url('../button_answer_basic_reversed.svg');
 }
