@@ -380,3 +380,63 @@ body {
     color: var(--main-bg-color);
     background-image: url('../button_answer_right.svg');
 }
+
+/* Modal window */
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(14, 21, 33, 0.80);
+    backdrop-filter: blur(10px);
+}
+
+.modal-window-start-game {
+    display: block;
+    border: var(--window-border);
+    border-radius: var(--window-border-radius);
+    background-color: var(--main-windows-color);
+}
+
+.player-input-label {
+    display: block;
+    padding: 15px 19px;
+    border-bottom: var(--window-inner-border);
+}
+
+#player-name {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 15px 19px;
+    border: none;
+    border-bottom: var(--window-inner-border);
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+}
+
+.start-game-button {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 15px 19px;
+    border: none;
+    border-bottom: var(--window-inner-border);
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.start-game-button:hover {
+    border-radius: 0 0 10px 10px;
+    outline: 2px solid #3469C3;
+    background: radial-gradient(50% 50% at 50% 50%, #2A3344 0%, #2E3E59 100%);
+}
