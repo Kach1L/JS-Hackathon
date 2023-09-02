@@ -22,12 +22,12 @@ async function playNewRound(number) {
   const roundDifficulty = getRoundDifficulty(number);
 
   const roundData = await fetchQuestionAndAnswers();
-  const question = roundData.question;
-  const answer1 = roundData.answer;
-  const answer2 = roundData.answer;
-  const answer3 = roundData.answer;
-  const answer4 = roundData.answer;
-  const rightAnswer = roundData.answer;
+  const question = 'roundData.question';
+  const answer1 = 'roundData.answer';
+  const answer2 = 'roundData.answer';
+  const answer3 = 'roundData.answer';
+  const answer4 = 'roundData.answer';
+  const rightAnswer = 'roundData.rightAnswer';
 
   const questionParagraph = document.querySelector('.question')
   const firstAnswerButton = document.querySelector('.first-answer')
@@ -94,6 +94,52 @@ function displayAnswers(answers) {
 function checkAnswer() {
 
 }
+
+function formatTime(time) {
+  // The largest round integer less than or equal to the result of time divided being by 60.
+  const minutes = Math.floor(time / 60);
+
+  // Seconds are the remainder of the time divided by 60 (modulus operator)
+  let seconds = time % 60;
+
+  // If the value of seconds is less than 10, then display seconds with a leading zero
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  // The output in MM:SS format
+  return `${minutes}:${seconds}`;
+}
+
+let timerStatus = true;
+let timerInterval; // Объявляем переменную для хранения интервала
+
+function startTimer() {
+  const flipCardElement = document.querySelector('.flip-card');
+  flipCardElement.classList.add('flip-card-timer'); // Показываем таймер
+  const TIME_LIMIT = 60;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+
+  timerInterval = setInterval(() => {
+    timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.querySelector(".flip-card-back-number").textContent = formatTime(timeLeft);
+
+    // Проверяем условия остановки таймера
+    if (timeLeft <= 0 || !timerStatus) {
+      clearInterval(timerInterval); // Останавливаем интервал
+      if (timeLeft <= 0) {
+        // Действия, выполняемые при истечении времени (60 секунд)
+        // Например, можно добавить здесь код для отображения сообщения об окончании времени.
+        console.log('Время истекло!');
+      }
+    }
+  }, 1000);
+}
+
+startTimer();
+
 // MODAL WINDOW CONTROL
 // Toggle modal window
 function toggleModalWindow(status = 'open') {
@@ -138,14 +184,12 @@ async function getNewPlayerNameFromForm(){
 }
 
 // Check if player name exist in the database
-function isPlayerExist(playerName) {
-  const allPlayers = getAllPlayers();
+async function isPlayerExist(playerName) {
+  const allPlayers = await fetchAllPlayers();
   const playerNames = allPlayers.map((player) => player.name);
 
   return !!(playerNames.includes(playerName));
 }
-
-startNewGame();
 
 // API FETCH FUNCTIONS
 async function fetchData(requestString) {
