@@ -12,18 +12,12 @@ async function playNewRound(number) {
   const answer4 = 'roundData.answer';
   const rightAnswer = 'roundData.rightAnswer';
 
-  const questionParagraph = document.querySelector('.question')
-  const firstAnswerButton = document.querySelector('.first-answer')
-  const secondAnswerButton = document.querySelector('.first-answer')
-  const thirdAnswerButton = document.querySelector('.first-answer')
-  const fourthAnswerButton = document.querySelector('.first-answer')
-
   let timerStatus = true;
   startTimer();
   displayQuestion();
   displayAnswers();
-
-
+  getUserAnswer()
+  const result = isAnswerRight()
 }
 
 // Check round topic by number
@@ -60,11 +54,30 @@ function displayQuestion(question) {
 
 function displayAnswers(answers) {
   const firstAnswerButton = document.querySelector('.first-answer')
-  const secondAnswerButton = document.querySelector('.first-answer')
-  const thirdAnswerButton = document.querySelector('.first-answer')
-  const fourthAnswerButton = document.querySelector('.first-answer')
+  const secondAnswerButton = document.querySelector('.second-answer')
+  const thirdAnswerButton = document.querySelector('.third-answer')
+  const fourthAnswerButton = document.querySelector('.fourth-answer')
   firstAnswerButton.textContent = answers[0];
   secondAnswerButton.textContent = answers[1];
   thirdAnswerButton.textContent = answers[2];
   fourthAnswerButton.textContent = answers[3];
+}
+
+function isAnswerRight(userAnswerNumber, rightAnswerNumber) {
+  return (userAnswerNumber === rightAnswerNumber);
+}
+
+function getUserAnswer() {
+  let userAnswer;
+  const firstAnswerButton = document.querySelector('.first-answer')
+  const secondAnswerButton = document.querySelector('.second-answer')
+  const thirdAnswerButton = document.querySelector('.third-answer')
+  const fourthAnswerButton = document.querySelector('.fourth-answer')
+
+  firstAnswerButton.addEventListener('click', () => userAnswer = 1);
+  secondAnswerButton.addEventListener('click', () => userAnswer = 2);
+  thirdAnswerButton.addEventListener('click', () => userAnswer = 3);
+  fourthAnswerButton.addEventListener('click', () => userAnswer = 4);
+
+  return userAnswer;
 }
