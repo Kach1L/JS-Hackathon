@@ -62,15 +62,13 @@ function getRoundTopic(number) {
 }
 
 function getRoundDifficulty(number) {
-  if (number % 4 === 0) {
+  if (number % 4 === 0 || number === 1) {
     return 'easy';
   }
   else if (number % 3 === 0) {
     return 'hard';
-  } else if (number % 2 === 0) {
-    return 'medium';
   } else {
-    return 'easy';
+    return 'medium';
   }
 }
 
@@ -96,21 +94,17 @@ function checkAnswer() {
 }
 
 function formatTime(time) {
-  // The largest round integer less than or equal to the result of time divided being by 60.
   const minutes = Math.floor(time / 60);
-
-  // Seconds are the remainder of the time divided by 60 (modulus operator)
   let seconds = time % 60;
-
-  // If the value of seconds is less than 10, then display seconds with a leading zero
   if (seconds < 10) {
     seconds = `0${seconds}`;
   }
 
-  // The output in MM:SS format
   return `${minutes}:${seconds}`;
 }
 
+// TIMER FUNCTIONS
+// Timer variables
 let timerStatus = true;
 let timerInterval; // Объявляем переменную для хранения интервала
 
@@ -138,7 +132,9 @@ function startTimer() {
   }, 1000);
 }
 
-startTimer();
+function stopTimer() {
+  timestatus = false;
+}
 
 // MODAL WINDOW CONTROL
 // Toggle modal window
