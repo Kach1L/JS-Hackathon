@@ -19,6 +19,8 @@ function startTimer() {
   let timePassed = 0;
   let timeLeft = TIME_LIMIT;
 
+  clearInterval(timerInterval); // Добавляем эту строку для сброса предыдущего интервала
+
   timerInterval = setInterval(() => {
     timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
@@ -32,6 +34,7 @@ function startTimer() {
     }
   }, 1000);
 }
+
 
 function displayTimer() {
   const flipCardElement = document.querySelector('.flip-card');
@@ -48,5 +51,12 @@ function updateTimeOnTimer(timeLeft) {
 }
 
 function stopTimer() {
-  timestatus = false;
+  timerStatus = false;
+  clearInterval(timerInterval);
+}
+
+function resetTimer() {
+  timerStatus = true;
+  clearInterval(timerInterval);
+  document.querySelector(".flip-card-back-number").textContent = '01:00'; // Установите начальное значение таймера, например, 1 минута
 }

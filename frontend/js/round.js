@@ -1,12 +1,9 @@
 // ROUND LOGIC
 // Start round
 async function playNewRound(number) {
-  alert('When you will be ready press OK');
   const roundTopic = getRoundTopic(number);
-  console.log(roundTopic);
   const roundDifficulty = getRoundDifficulty(number);
-  console.log(roundDifficulty);
-
+  resetTimer();
   // const roundData = await fetchQuestionAndAnswers();
 
   // Temporary stuff
@@ -23,7 +20,6 @@ async function playNewRound(number) {
   const thirdAnswerButton = document.querySelector('.answer-button-3')
   const fourthAnswerButton = document.querySelector('.answer-button-4')
 
-  let timerStatus = true;
   startTimer();
   displayQuestion(question);
   displayAnswers(answer1, answer2, answer3, answer4);
@@ -49,17 +45,18 @@ async function playNewRound(number) {
   });
 
   const userAnswerText = await userAnswerPromise;
-  stopTimer();
   hideTimer();
-  const isCorrect = isAnswerRight(userAnswerText, correctAnswerText);
-  setTimeout(()=> {
-    isCorrect ? alert('You are right!') : alert('Sorry, you are wrong!');
-    firstAnswerButton.classList.remove('answer-button-active');
-    secondAnswerButton.classList.remove('answer-button-reversed-active');
-    thirdAnswerButton.classList.remove('answer-button-active');
-    fourthAnswerButton.classList.remove('answer-button-reversed-active');
-    return isCorrect;
-  }, 1000)
+  let isCorrect = false;
+  isCorrect = isAnswerRight(userAnswerText, correctAnswerText);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      firstAnswerButton.classList.remove('answer-button-active');
+      secondAnswerButton.classList.remove('answer-button-reversed-active');
+      thirdAnswerButton.classList.remove('answer-button-active');
+      fourthAnswerButton.classList.remove('answer-button-reversed-active');
+      resolve(isCorrect);
+    }, 1000);
+  });
 }
 
 // Check round topic by number

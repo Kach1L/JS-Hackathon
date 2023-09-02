@@ -6,9 +6,9 @@ async function createPlayer() {
   // if (!isPlayerExist(submittedName)) {
   //   await setNewPlayer(submittedName);
   // }
-  if (submittedName === 'Kachi' || submittedName === 'Slava') {
-    console.log('Hi again, Developer!!!!')
-  }
+  // if (submittedName === 'Kachi' || submittedName === 'Slava') {
+  //   console.log('Hi again, Developer!!!!')
+  // }
   togglePlayerNameInputWindow('close');
   return submittedName;
 }
