@@ -14,8 +14,7 @@ function formatTime(time) {
 }
 
 function startTimer() {
-  const flipCardElement = document.querySelector('.flip-card');
-  flipCardElement.classList.add('flip-card-timer'); // Показываем таймер
+  displayTimer();
   const TIME_LIMIT = 60;
   let timePassed = 0;
   let timeLeft = TIME_LIMIT;
@@ -23,16 +22,29 @@ function startTimer() {
   timerInterval = setInterval(() => {
     timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
-    document.querySelector(".flip-card-back-number").textContent = formatTime(timeLeft);
 
-    // Проверяем условия остановки таймера
+    updateTimeOnTimer(timeLeft);
     if (timeLeft <= 0 || !timerStatus) {
       clearInterval(timerInterval); // Останавливаем интервал
-      if (timeLeft <= 0) {
-        console.log('Время истекло!');
-      }
+      console.log('Время истекло!');
+      hideTimer();
+      timerStatus = false;
     }
   }, 1000);
+}
+
+function displayTimer() {
+  const flipCardElement = document.querySelector('.flip-card');
+  flipCardElement.classList.add('flip-card-timer'); // Показываем таймер
+}
+
+function hideTimer() {
+  const flipCardElement = document.querySelector('.flip-card');
+  flipCardElement.classList.remove('flip-card-timer'); // Показываем таймер
+}
+
+function updateTimeOnTimer(timeLeft) {
+  document.querySelector(".flip-card-back-number").textContent = formatTime(timeLeft);
 }
 
 function stopTimer() {

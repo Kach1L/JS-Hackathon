@@ -18,11 +18,8 @@ async function playNewRound(number) {
   const thirdAnswerButton = document.querySelector('.first-answer')
   const fourthAnswerButton = document.querySelector('.first-answer')
 
+  let timerStatus = true;
   startTimer();
-  setTimeout(() => {
-    alert('Time is out!');
-    return false;
-  }, 60000)
   displayQuestion();
   displayAnswers();
 
@@ -45,7 +42,7 @@ function getRoundTopic(number) {
 }
 
 function getRoundDifficulty(number) {
-  if (number % 4 === 0 || number === 1) {
+  if ((number - 1) % 3 === 0 || number === 1) {
     return 'easy';
   }
   else if (number % 3 === 0) {
