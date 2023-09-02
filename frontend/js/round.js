@@ -46,8 +46,7 @@ async function playNewRound(number) {
 
   const userAnswerText = await userAnswerPromise;
   hideTimer();
-  let isCorrect = false;
-  isCorrect = isAnswerRight(userAnswerText, correctAnswerText);
+  const isCorrect = isAnswerRight(userAnswerText, correctAnswerText);
   return new Promise((resolve) => {
     setTimeout(() => {
       firstAnswerButton.classList.remove('answer-button-active');
