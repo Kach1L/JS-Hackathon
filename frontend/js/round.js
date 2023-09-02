@@ -3,7 +3,9 @@
 async function playNewRound(number) {
   alert('When you will be ready press OK');
   const roundTopic = getRoundTopic(number);
+  console.log(roundTopic);
   const roundDifficulty = getRoundDifficulty(number);
+  console.log(roundDifficulty);
 
   // const roundData = await fetchQuestionAndAnswers();
 
@@ -64,11 +66,11 @@ async function playNewRound(number) {
 function getRoundTopic(number) {
   if (number >= 13) {
     return 'http';
-  } else if (number >= 10 || number < 13) {
+  } else if (number >= 10 && number < 13) {
     return 'react';
-  } else if (number >= 7 || number < 10) {
+  } else if (number >= 7 && number < 10) {
     return 'javascript';
-  } else if (number >= 4 || number < 7) {
+  } else if (number >= 4 && number < 7) {
     return 'css';
   } else {
     return 'html';
