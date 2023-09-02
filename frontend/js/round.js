@@ -1,23 +1,63 @@
 // ROUND LOGIC
 // Start round
 async function playNewRound(number) {
+  alert('When you will be ready press OK');
   const roundTopic = getRoundTopic(number);
   const roundDifficulty = getRoundDifficulty(number);
 
-  const roundData = await fetchQuestionAndAnswers();
-  const question = 'roundData.question';
-  const answer1 = 'roundData.answer';
-  const answer2 = 'roundData.answer';
-  const answer3 = 'roundData.answer';
-  const answer4 = 'roundData.answer';
-  const rightAnswer = 'roundData.rightAnswer';
+  // const roundData = await fetchQuestionAndAnswers();
+
+  // Temporary stuff
+  const question = quizQuestions[roundTopic][roundDifficulty]['question'];
+  const answer1 = quizQuestions[roundTopic][roundDifficulty]['options'][0];
+  const answer2 = quizQuestions[roundTopic][roundDifficulty]['options'][1];
+  const answer3 = quizQuestions[roundTopic][roundDifficulty]['options'][2];
+  const answer4 = quizQuestions[roundTopic][roundDifficulty]['options'][3];
+  const correctAnswerText = quizQuestions[roundTopic][roundDifficulty]['correctAnswer'];
+
+  // Buttons
+  const firstAnswerButton = document.querySelector('.answer-button-1')
+  const secondAnswerButton = document.querySelector('.answer-button-2')
+  const thirdAnswerButton = document.querySelector('.answer-button-3')
+  const fourthAnswerButton = document.querySelector('.answer-button-4')
 
   let timerStatus = true;
   startTimer();
-  displayQuestion();
-  displayAnswers();
-  getUserAnswer()
-  const result = isAnswerRight()
+  displayQuestion(question);
+  displayAnswers(answer1, answer2, answer3, answer4);
+
+  // Answer buttons
+  const userAnswerPromise = new Promise((resolve) => {
+    firstAnswerButton.addEventListener('click', () => {
+      firstAnswerButton.classList.add('answer-button-active');
+      return resolve(firstAnswerButton.textContent)
+    });
+    secondAnswerButton.addEventListener('click', () => {
+      secondAnswerButton.classList.add('answer-button-reversed-active');
+      return resolve(secondAnswerButton.textContent)
+    });
+    thirdAnswerButton.addEventListener('click', () => {
+      thirdAnswerButton.classList.add('answer-button-active');
+      return resolve(thirdAnswerButton.textContent)
+    });
+    fourthAnswerButton.addEventListener('click', () => {
+      fourthAnswerButton.classList.add('answer-button-reversed-active');
+      return resolve(fourthAnswerButton.textContent)
+    });
+  });
+
+  const userAnswerText = await userAnswerPromise;
+  stopTimer();
+  hideTimer();
+  const isCorrect = isAnswerRight(userAnswerText, correctAnswerText);
+  setTimeout(()=> {
+    isCorrect ? alert('You are right!') : alert('Sorry, you are wrong!');
+    firstAnswerButton.classList.remove('answer-button-active');
+    secondAnswerButton.classList.remove('answer-button-reversed-active');
+    thirdAnswerButton.classList.remove('answer-button-active');
+    fourthAnswerButton.classList.remove('answer-button-reversed-active');
+    return isCorrect;
+  }, 1000)
 }
 
 // Check round topic by number
@@ -52,32 +92,18 @@ function displayQuestion(question) {
   questionParagraph.textContent = question;
 }
 
-function displayAnswers(answers) {
-  const firstAnswerButton = document.querySelector('.first-answer')
-  const secondAnswerButton = document.querySelector('.second-answer')
-  const thirdAnswerButton = document.querySelector('.third-answer')
-  const fourthAnswerButton = document.querySelector('.fourth-answer')
-  firstAnswerButton.textContent = answers[0];
-  secondAnswerButton.textContent = answers[1];
-  thirdAnswerButton.textContent = answers[2];
-  fourthAnswerButton.textContent = answers[3];
+function displayAnswers(answer1, answer2, answer3, answer4) {
+  const firstAnswerButton = document.querySelector('.answer-button-1')
+  const secondAnswerButton = document.querySelector('.answer-button-2')
+  const thirdAnswerButton = document.querySelector('.answer-button-3')
+  const fourthAnswerButton = document.querySelector('.answer-button-4')
+
+  firstAnswerButton.textContent = answer1;
+  secondAnswerButton.textContent = answer2;
+  thirdAnswerButton.textContent = answer3;
+  fourthAnswerButton.textContent = answer4;
 }
 
 function isAnswerRight(userAnswerNumber, rightAnswerNumber) {
   return (userAnswerNumber === rightAnswerNumber);
-}
-
-function getUserAnswer() {
-  let userAnswer;
-  const firstAnswerButton = document.querySelector('.first-answer')
-  const secondAnswerButton = document.querySelector('.second-answer')
-  const thirdAnswerButton = document.querySelector('.third-answer')
-  const fourthAnswerButton = document.querySelector('.fourth-answer')
-
-  firstAnswerButton.addEventListener('click', () => userAnswer = 1);
-  secondAnswerButton.addEventListener('click', () => userAnswer = 2);
-  thirdAnswerButton.addEventListener('click', () => userAnswer = 3);
-  fourthAnswerButton.addEventListener('click', () => userAnswer = 4);
-
-  return userAnswer;
 }
