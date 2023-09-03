@@ -29,6 +29,11 @@ async function getNewPlayerNameFromForm(){
   return submittedName;
 }
 
+async function displayAllPlayers() {
+  const allPlayers = await fetchAllPlayers();
+
+}
+
 // Check if player name exist in the database
 async function isPlayerExist(playerName) {
   const allPlayers = await fetchAllPlayers();
