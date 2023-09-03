@@ -6,19 +6,18 @@ async function fetchData(requestString) {
       throw new Error("Corrupted Data")
     } else{
       const info = await data.json();
-      console.log(info);
+      return info;
     }
   } catch(err){
     console.log("IN THE CATCH ", err);
   }}
 
 async function fetchAllPlayers() {
-  fetchData('http://127.0.0.1:8000/players/all/')
+  return await fetchData('http://127.0.0.1:8000/players/all/')
 }
-// fetchAllPlayers()
 
 async function fetchQuestionAndAnswers(roundNumber) {
-  fetchData(`http://127.0.0.1:8000/options/${roundNumber}/`)
+  return await fetchData(`http://127.0.0.1:8000/options/${roundNumber}/`)
 }
 
 function postNewPlayer(playerName) {
@@ -43,6 +42,6 @@ function postNewPlayer(playerName) {
     });
 }
 
-async function fetchPlayerInfo(playerName) {
-  fetchData(`http://127.0.0.1:8000/players/all/`)
-}
+// async function fetchPlayerInfo(playerName) {
+//   return await fetchData(`http://127.0.0.1:8000/players/all/`)
+// }
